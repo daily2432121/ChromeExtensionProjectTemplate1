@@ -1,0 +1,31 @@
+{
+    "manifest_version": 2,
+    "name": "RallyCat Extensions",
+    "description": "This extension hyperlinkifies your rally items",
+    "version": "1.0",
+    "content_security_policy": "script-src 'self' https://*.jquery.com; object-src 'self'",
+
+    "permissions": [
+        "https://*.rallydev.com/*",
+        "https://*.slack.com/*",
+        "storage",
+        "background"
+    ],
+    "background": {
+        "scripts": [ "jquery-1.11.1.min.js", "popup.js" ],
+        "persistent": false
+    },
+    "content_scripts": [
+        {
+            "js": [ "jquery-1.11.1.min.js", "jquery.colorbox.js", "jquery.timer.js","content.js" ],
+            "css": [ "colorbox.css" ],
+            "matches": [ "http://*.slack.com/*", "https://*.slack.com/*" ]
+            //"run_at": "document_end"
+        }
+    ],
+    
+    
+    "browser_action": {
+        "default_icon": "img/icon.png"
+    }
+}
