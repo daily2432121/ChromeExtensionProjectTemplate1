@@ -41,8 +41,7 @@
     <Content Include="app\colorbox.css" />
     <Content Include="app\img\icon.png" />
     <Content Include="app\content.js" />
-    <Content Include="app\jquery.bpopup.min.js" />
-    <Content Include="app\jquery.colorbox.js" />
+    <Content Include="app\jquery.simplemodal.js" />
     <Content Include="app\jquery.timer.js" />
     <Content Include="app\popup.html" />
     <Content Include="app\popup.js" />

@@ -14,8 +14,8 @@
           <ExternalProgram>C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</ExternalProgram>
           <StartExternalURL>
           </StartExternalURL>
-          <StartCmdLineArguments>--load-extension="c:\Users\cheng\Documents\Visual Studio 2013\Projects\ChromeExtensionProjectTemplate1\ChromeExtensionProjectTemplate1\app"</StartCmdLineArguments>
-          <StartWorkingDirectory>c:\Users\cheng\Documents\Visual Studio 2013\Projects\ChromeExtensionProjectTemplate1\ChromeExtensionProjectTemplate1\app</StartWorkingDirectory>
+          <StartCmdLineArguments>--load-extension="C:\Users\Cheng\Documents\ChromeExtensionProjectTemplate1\ChromeExtensionProjectTemplate1\app"</StartCmdLineArguments>
+          <StartWorkingDirectory>C:\Users\Cheng\Documents\ChromeExtensionProjectTemplate1\ChromeExtensionProjectTemplate1\app</StartWorkingDirectory>
           <EnableENC>True</EnableENC>
           <AlwaysStartWebServerOnDebug>True</AlwaysStartWebServerOnDebug>
         </WebProjectProperties>
