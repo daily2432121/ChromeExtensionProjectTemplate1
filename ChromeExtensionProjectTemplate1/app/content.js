@@ -95,7 +95,7 @@ function handleSpan(item) {
                 //$(this).colorbox({ iframe: true, width: "80%", height: "80%",opacity:0,closeButton:true });
                 var h = $(window).height() * 0.8;
                 var w = $(window).width() * 0.8;
-                $.modal('<iframe id="rallyItemIframe" src="' + $(this).attr("rallyItem") + '" scrolling="no" style="overflow:hidden; border:0; position:relative; height:' + h + 'px; width:' + w + 'px;">', {
+                $.modal('<iframe id="rallyItemIframe" src="' + $(this).attr("rallyItem") + '" style="border:0; position:relative; height:' + h + 'px; width:' + w + 'px;">', {
                     closeHTML: "",
                     containerCss: {
                         backgroundColor: "#fff",
