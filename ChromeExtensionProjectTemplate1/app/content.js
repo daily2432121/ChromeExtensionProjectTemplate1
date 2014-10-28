@@ -1,25 +1,59 @@
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
-        if (request.query == "checkIfExists")
+        if (request.query == "checkIfExists") {
             sendResponse({ message: true });
-    });
+            return true;
+        }
+            
+        if (request.query == "refreshOptions") {
+            sendResponse({ message: true });
+            window.location.reload();
+            return true;
+        }
 
+            
+    });
+var workspaceId = "";
+var slackUrl = "";
+var inRefresh = false;
 $("#header").ready(function () {
     //$("#btnBeat").remove();
     //addButton();
-    var timer = $.timer(function () {
-        timerTask();
+    chrome.storage.sync.get(["workspaceId", "slackUrl"], function (o) {
+        workspaceId = o.workspaceId;
+        slackUrl = o.slackUrl;
+        if (workspaceId == null || workspaceId == "") {
+            return false;
+        }
+        if (slackUrl == null || slackUrl == "") {
+            return false;
+        }
+
+        //$("#btnBeat").remove();
+        //addButton();
+
+        var timer = $.timer(function () {
+            timerTask();
+        });
+        timer.set({ time: 10000, autostart: true });
     });
-    timer.set({ time: 10000, autostart: true });
+
+    
 });
 
 
 
 
+function loadOptions() {
+    chrome.storage.sync.get(["workspaceId", "slackUrl"], function (o) {
+        workspaceId=o.workspaceId;
+        slackUrl=o.slackUrl;
+    });
+}
+
 
 function timerTask() {
-    if (document.title.indexOf("Fino Consulting Slack") != -1) {
-        
+    if (document.domain.toLowerCase() == slackUrl.toLowerCase()) {
         //var alink = '<a href="https://github.com/FinoConsulting/ProjectApricot/commit/19e43bdb7e5b" rel="noreferrer" target="_blank">19e43bdb7e5b</a>';
         $(".message_content").each(function (index) {
             var h = $(this).html();
@@ -81,7 +115,7 @@ function addButton() {
                     //$(this).colorbox({ iframe: true, width: "80%", height: "80%",opacity:0,closeButton:true });
                     var h = $(window).height() * 0.8;
                     var w = $(window).width() * 0.8;
-                    $.modal('<iframe id="rallyItemIframe" src="' + $(this).attr("rallyItem") + '" scrolling="no" style="overflow:hidden; border:0; position:relative; height:' + h + 'px; width:' + w + 'px;">', {
+                    $.modal('<iframe id="rallyItemIframe" src="' + $(this).attr("rallyItem") + '" style=" border:0; position:relative; height:' + h + 'px; width:' + w + 'px;">', {
                         closeHTML: "",
                         containerCss: {
                             backgroundColor: "#fff",
@@ -105,24 +139,24 @@ function addButton() {
 
 
 function hyperlinkify(text) {
-    var userstoryPrefex = "https://rally1.rallydev.com/#/13073500360d/detail/userstory/";
-    var defectPrefex = "https://rally1.rallydev.com/#/13073500360d/detail/defect/";
+    //var userstoryPrefex = "https://rally1.rallydev.com/#/13073500360d/detail/userstory/";
+    var userstoryPrefex = "https://rally1.rallydev.com/#/" + workspaceId +"/detail/userstory/";
+    //var defectPrefex = "https://rally1.rallydev.com/#/13073500360d/detail/defect/";
+    var defectPrefex = "https://rally1.rallydev.com/#/" + workspaceId + "/detail/defect/";
     var regex = /\b(us\d{3,10}|de\d{3,10})\b/ig;
 
     //alert(text);
     var result = text;
-    var item;
-    while ((item = regex.exec(text)) != null) {
-        if (/^de/i.test(item[0])) {
-            result = result.replace(item[0], '<a class="rallyItem" style="color:#00f;font-weight:bold;" href="#" rallyItem="' + defectPrefex + item[0] + '"  rel="noreferrer" target="_self">' + item[0] + '</a>');
-        }
-        else {
-            result = result.replace(item[0], '<a class="rallyItem" style="color:#00f;font-weight:bold;"href="#" rallyItem="' + userstoryPrefex + item[0] + '" rel="noreferrer" target="_self">' + item[0] + '</a>');
-            //result = result.replace(item[0], '<a href="#" class="rallyItem" rel="noreferrer" target="_blank">' + item[0] + '</a>');
-        }
+    
 
-
-    }
+    result = result.replace(regex, function(match, capture) {
+        if (/^de/i.test(match)) {
+            return '<a class="rallyItem" style="color:#00f;font-weight:bold;" href="#" rallyItem="' + defectPrefex + match+'"  rel="noreferrer" target="_self">'+match+'</a>';
+        } else {
+            return '<a class="rallyItem" style="color:#00f;font-weight:bold;" href="#" rallyItem="' + userstoryPrefex + match+'"  rel="noreferrer" target="_self">'+match+'</a>';
+        }
+    });
+    
     return result;
 }
 

@@ -39,10 +39,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app\colorbox.css" />
+    <Content Include="app\option.js" />
     <Content Include="app\img\icon.png" />
     <Content Include="app\content.js" />
     <Content Include="app\jquery.simplemodal.js" />
     <Content Include="app\jquery.timer.js" />
+    <Content Include="app\option.html" />
     <Content Include="app\popup.html" />
     <Content Include="app\popup.js" />
     <Content Include="Properties\build\lib\Ionic.Zip.DLL" />
