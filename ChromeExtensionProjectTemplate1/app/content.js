@@ -32,15 +32,40 @@ $("#header").ready(function () {
         //$("#btnBeat").remove();
         //addButton();
 
-        var timer = $.timer(function () {
-            timerTask();
+        //var timer = $.timer(function () {
+        //    timerTask();
+        //});
+        //timer.set({ time: 10000, autostart: true });
+
+        anime_watch("span.message_content", function (span) {
+            handleSpan(span);
         });
-        timer.set({ time: 10000, autostart: true });
     });
 
     
 });
 
+
+
+var anime_watch = function (selector, callback) {
+    var guid = selector.replace(/[^a-zA-Z0-9]+/g, "_") + "_" + ((new Date()).getTime());
+
+    $("<style/>").html([
+        "@-webkit-keyframes {guid} { from { clip: rect(auto, auto, auto, auto); } to { clip: rect(auto, auto, auto, auto); } }",
+        "@keyframes {guid} { from { clip: rect(auto, auto, auto, auto); } to { clip: rect(auto, auto, auto, auto); } }",
+        "{selector} { animation-duration: 0.001s; animation-name: {guid}; -webkit-animation-duration: 0.001s; -webkit-animation-name: {guid}; }"
+    ].join("\n").replace(/\{guid\}/g, guid).replace(/\{selector\}/g, selector)).appendTo("head");
+
+
+    var eventHandler = function(event) {
+        if (event.animationName === guid || event.WebkitAnimationName === guid) {
+            callback.call(event.target, event.target);
+        }
+    };
+
+    document.addEventListener("animationstart", eventHandler, false);
+    document.addEventListener("webkitAnimationStart", eventHandler, false);
+};
 
 
 
@@ -49,6 +74,48 @@ function loadOptions() {
         workspaceId=o.workspaceId;
         slackUrl=o.slackUrl;
     });
+}
+
+
+function handleSpan(item) {
+    if (document.domain.toLowerCase() == slackUrl.toLowerCase()) {
+        //var alink = '<a href="https://github.com/FinoConsulting/ProjectApricot/commit/19e43bdb7e5b" rel="noreferrer" target="_blank">19e43bdb7e5b</a>';
+        var ht = $(item).html();
+        if (ht.indexOf('class="rallyItem') >= 0) return true;
+        hyperlinkifyInnerMost($(item)[0]);
+
+        //$(".message_content").each(function (index) {
+        //    var h = $(this).html();
+        //    if (h.indexOf('class="rallyItem') >= 0) return true;
+        //    hyperlinkifyInnerMost($(this)[0]);
+        //});
+
+        $(".rallyItem").ready(function () {
+            $(".rallyItem").click(function () {
+                //$(this).colorbox({ iframe: true, width: "80%", height: "80%",opacity:0,closeButton:true });
+                var h = $(window).height() * 0.8;
+                var w = $(window).width() * 0.8;
+                $.modal('<iframe id="rallyItemIframe" src="' + $(this).attr("rallyItem") + '" scrolling="no" style="overflow:hidden; border:0; position:relative; height:' + h + 'px; width:' + w + 'px;">', {
+                    closeHTML: "",
+                    containerCss: {
+                        backgroundColor: "#fff",
+                        borderColor: "#fff",
+                        height: h,
+                        padding: 0,
+                        width: w,
+                    },
+                    overlayClose: true,
+                    escClose: true
+                });
+                $("#simplemodal-data").css("height", $("#rallyItemIframe").height());
+                $("#simplemodal-data").css("overflow", "hidden");
+            });
+        });
+
+    }
+    else {
+        //alert("Not Fino consulting slack");
+    }
 }
 
 
