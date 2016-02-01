@@ -1,10 +1,10 @@
 $(document).ready(function () {
-    chrome.storage.sync.get(["workspaceId", "slackUrl"], function (o) {
-        $("#txtRallyWorkspaceId").val(o.workspaceId);
-        $("#txtSlackUrl").val(o.slackUrl);
-        $("#btnSave").click(btnSave);
-        $("#btnClose").click(function () { window.close(); });
-    });
+    //chrome.storage.sync.get(["workspaceId", "slackUrl"], function (o) {
+    //    $("#txtRallyWorkspaceId").val(o.workspaceId);
+    //    $("#txtSlackUrl").val(o.slackUrl);
+    //    $("#btnSave").click(btnSave);
+    //    $("#btnClose").click(function () { window.close(); });
+    //});
     
 });
 

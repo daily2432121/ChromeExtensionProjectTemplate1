@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,10 +40,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app\colorbox.css" />
+    <Content Include="app\jquery-ui.css" />
+    <Content Include="app\jquery-ui.js" />
+    <Content Include="app\jquery.dialogextend.js" />
     <Content Include="app\option.js" />
     <Content Include="app\img\icon.png" />
     <Content Include="app\content.js" />
-    <Content Include="app\jquery.simplemodal.js" />
     <Content Include="app\jquery.timer.js" />
     <Content Include="app\option.html" />
     <Content Include="app\popup.html" />

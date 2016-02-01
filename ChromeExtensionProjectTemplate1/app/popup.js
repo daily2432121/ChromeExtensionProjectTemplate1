@@ -13,7 +13,7 @@ function initialize(tabId) {
     if (!isMyScriptLoaded())
     {
         chrome.tabs.executeScript(tabId, { file: "jquery-1.11.1.min.js", allFrames: true });
-        chrome.tabs.executeScript(tabId, { file: "jquery.simplemodal.js", allFrames: true });
+        chrome.tabs.executeScript(tabId, { file: "jquery.dialogextend.js", allFrames: true });
         chrome.tabs.executeScript(tabId, { file: "jquery.timer.js", allFrames: true });
         chrome.tabs.executeScript(tabId, { file: "content.js", allFrames: true });
     }

@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectView>ProjectFiles</ProjectView>
+  </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
@@ -14,8 +17,8 @@
           <ExternalProgram>C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</ExternalProgram>
           <StartExternalURL>
           </StartExternalURL>
-          <StartCmdLineArguments>--load-extension="C:\Users\Cheng\Documents\ChromeExtensionProjectTemplate1\ChromeExtensionProjectTemplate1\app"</StartCmdLineArguments>
-          <StartWorkingDirectory>C:\Users\Cheng\Documents\ChromeExtensionProjectTemplate1\ChromeExtensionProjectTemplate1\app</StartWorkingDirectory>
+          <StartCmdLineArguments>--load-extension="C:\Projects\ChromeExtensionProjectTemplate1\ChromeExtensionProjectTemplate1\app"</StartCmdLineArguments>
+          <StartWorkingDirectory>C:\Projects\ChromeExtensionProjectTemplate1\ChromeExtensionProjectTemplate1\app</StartWorkingDirectory>
           <EnableENC>True</EnableENC>
           <AlwaysStartWebServerOnDebug>True</AlwaysStartWebServerOnDebug>
         </WebProjectProperties>
