@@ -2,14 +2,12 @@
     "manifest_version": 2,
     "name": "Slack-Rally Extensions",
     "description": "This extension hyperlinkifies your rally items on slack",
-    "version": "0.4",
+    "version": "0.5",
     "content_security_policy": "script-src 'self' https://*.jquery.com; object-src 'self'",
 
     "permissions": [
         "https://*.rallydev.com/*",
-        "https://*.slack.com/*",
-        "storage",
-        "background"
+        "https://*.slack.com/*"
     ],
     "content_scripts": [
         {
