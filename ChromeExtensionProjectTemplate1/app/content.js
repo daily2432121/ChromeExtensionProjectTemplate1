@@ -119,7 +119,7 @@ function addButton() {
 function hyperlinkify(text) {
     
     var template = "https://rally1.rallydev.com/slm/rally.sp?#/search?keywords=";
-    var regex = /\b(us\d{1,10}|de\d{1,10}||ta\d{1,10})\b/ig;
+    var regex = /\b(us\d{1,10}|de\d{1,10}|ta\d{1,10})\b/ig;
 
     //alert(text);
     var result = text;
